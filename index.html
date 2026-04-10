@@ -1,157 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vortex Police</title>
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #061a2b;
+      color: #e6f1ff;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: #041421;
+      border-bottom: 1px solid #0d2a44;
+    }
+
+    .logo {
+      color: #00e0ff;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .nav-links a {
+      color: #c9e6ff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #00e0ff;
+    }
+
+    .nav-cta {
+      background: #00e0ff;
+      padding: 8px 15px;
+      border-radius: 6px;
+      color: black !important;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 80px 40px;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      color: #00e0ff;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      display: inline-block;
+      border: 1px solid #00e0ff;
+      padding: 5px 10px;
+      border-radius: 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      line-height: 1.2;
+      margin: 20px 0;
+    }
+
+    p {
+      color: #c9e6ff;
+      max-width: 600px;
+    }
+
+    /* BUTTONS */
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: #00e0ff;
+      color: black;
+      font-weight: bold;
+    }
+
+    .btn-secondary {
+      border: 1px solid #00e0ff;
+      color: #00e0ff;
+    }
+
+    .btn-secondary:hover {
+      background: #00e0ff;
+      color: black;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="top-lights">
-    <div class="red"></div>
-    <div class="blue"></div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">🚔 VORTEX POLICE</div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="careers.html">Careers</a>
+      <a href="login.html">Portal</a>
+      <a href="contact.html">Contact</a>
+      <a href="careers.html" class="nav-cta">Apply</a>
+    </div>
   </div>
 
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="index.html" class="brand">
-        <div class="brand-badge">VP</div>
-        <div class="brand-text">VORTEX POLICE</div>
-      </a>
+  <!-- HERO -->
+  <div class="hero">
+    <span class="eyebrow">OFFICIAL RECRUITMENT AND INFORMATION PORTAL</span>
 
-      <nav class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="careers.html">Careers</a>
-        <a href="login.html">Portal</a>
-        <a href="staff.html">Staff</a>
-        <a href="#contact">Contact</a>
-        <a href="careers.html" class="nav-cta">Apply</a>
-      </nav>
+    <h1>
+      Professional policing.<br>
+      Modern response.<br>
+      Public confidence.
+    </h1>
+
+    <p>
+      Vortex Police is a UK-style policing homepage built with a dark navy and cyan visual identity,
+      combining operational professionalism with a clear public-facing design.
+    </p>
+
+    <div class="buttons">
+      <a href="careers.html" class="btn btn-primary">View Careers</a>
+
+      <!-- ✅ STAFF LOGIN BUTTON (WORKING) -->
+      <a href="login.html" class="btn btn-secondary">Staff Login</a>
     </div>
-  </header>
+  </div>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <span class="eyebrow">Official recruitment and information portal</span>
-        <h1>Professional policing. Modern response. Public confidence.</h1>
-        <p>
-          Vortex Police is a UK-style policing homepage built with a dark navy and cyan visual identity,
-          combining operational professionalism with a clear public-facing design.
-        </p>
-        <div class="hero-actions">
-          <a href="careers.html" class="btn btn-primary">View Careers</a>
-          <a href="login.html" class="btn btn-secondary">Staff Login</a>  
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-dark">
-    <div class="container">
-      <h2>Our priorities</h2>
-      <p class="section-intro">
-        A strong visible presence, rapid response capability, neighbourhood reassurance,
-        and specialist support when the public needs it most.
-      </p>
-
-      <div class="grid-4">
-        <div class="card">
-          <h3>Emergency Response</h3>
-          <p>Fast attendance to immediate incidents, welfare concerns, and high-priority calls.</p>
-        </div>
-        <div class="card">
-          <h3>Neighbourhood Patrol</h3>
-          <p>Visible local policing focused on prevention, reassurance, and public contact.</p>
-        </div>
-        <div class="card">
-          <h3>Safeguarding</h3>
-          <p>Support for vulnerable people, victims of crime, and those at risk of harm.</p>
-        </div>
-        <div class="card">
-          <h3>Partnership Working</h3>
-          <p>Coordination with local services, emergency partners, and community organisations.</p>
-        </div>
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-number">24/7</div>
-          <div>Operational coverage</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">4</div>
-          <div>Core public service areas</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">100%</div>
-          <div>Responsive web layout</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container split">
-      <div class="panel">
-        <h2>Join the service</h2>
-        <p class="section-intro">
-          We are looking for people with integrity, sound judgement, and the ability to stay calm under pressure.
-        </p>
-        <div class="grid-3">
-          <div class="card">
-            <h3>Competitive package</h3>
-            <p>Salary bands, pension, shift allowance, and structured development.</p>
-          </div>
-          <div class="card">
-            <h3>Training pathway</h3>
-            <p>Structured onboarding, practical support, and operational coaching.</p>
-          </div>
-          <div class="card">
-            <h3>Career progression</h3>
-            <p>Routes into specialist roles, leadership, and support functions.</p>
-          </div>
-        </div>
-        <p style="margin-top: 22px;">
-          <a href="careers.html" class="btn btn-primary">Start Application</a>
-        </p>
-      </div>
-
-      <aside class="panel" id="contact">
-        <h2>Contact</h2>
-        <p class="small">For general enquiries, recruitment questions, or information requests.</p>
-        <p><strong>Email:</strong> recruitment@vortexpolice.local</p>
-        <p><strong>Phone:</strong> 0207 000 0000</p>
-        <p><strong>Address:</strong> Vortex Police HQ, London, United Kingdom</p>
-        <div class="tag">Response</div>
-        <div class="tag">Patrol</div>
-        <div class="tag">Recruitment</div>
-        <div class="tag">Public Safety</div>
-      </aside>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h4>Vortex Police</h4>
-        <p>A polished UK police-style homepage with a custom dark blue and cyan identity.</p>
-      </div>
-      <div>
-        <h4>Links</h4>
-        <ul class="list-clean">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="login.html">Portal</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Notice</h4>
-        <p>This is a website build/demo. Real authentication and database features require a backend.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
