@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Vortex Police • Staff Portal</title>
+  <title>Vortex Police • Staff</title>
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: #061a2b;
-      color: #e6f1ff;
+      color: white;
     }
 
-    /* 🔐 TOP BAR */
     .topbar {
       background: #041421;
       padding: 15px 20px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       border-bottom: 1px solid #0d2a44;
-    }
-
-    .topbar strong {
-      color: #00e0ff;
     }
 
     .topbar button {
@@ -31,14 +25,11 @@
       padding: 8px 15px;
       border-radius: 6px;
       cursor: pointer;
-      font-weight: bold;
     }
 
     h1 {
       padding: 20px;
-      border-bottom: 1px solid #0d2a44;
       color: #00e0ff;
-      margin: 0;
     }
 
     #applications {
@@ -50,80 +41,56 @@
 
     .card {
       background: #0b2a44;
+      padding: 20px;
+      border-radius: 10px;
       border: 1px solid #0f3b5c;
-      border-radius: 12px;
-      padding: 20px;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #00e0ff;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      color: #00e0ff;
-    }
-
-    .card p {
-      margin: 5px 0;
-      font-size: 14px;
-      color: #c9e6ff;
-    }
-
-    .empty {
-      padding: 20px;
-      color: #7aaacb;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 🔐 LOGIN CHECK -->
-  <script>
-    const user = localStorage.getItem("vp_logged_in_user");
+<!-- 🔐 LOGIN CHECK -->
+<script>
+  const user = localStorage.getItem("vp_logged_in_user");
 
-    if (user !== "staff") {
-      window.location.href = "login.html";
-    }
-  </script>
+  if (user !== "staff") {
+    window.location.href = "login.html";
+  }
+</script>
 
-  <!-- 🚔 TOP BAR -->
-  <div class="topbar">
-    <strong>🚔 VORTEX POLICE • STAFF</strong>
-    <button onclick="logout()">Logout</button>
-  </div>
+<div class="topbar">
+  <strong>🚔 STAFF PANEL</strong>
+  <button onclick="logout()">Logout</button>
+</div>
 
-  <h1>📋 Applications</h1>
+<h1>Applications</h1>
 
-  <div id="applications"></div>
+<div id="applications"></div>
 
-  <!-- 📦 LOAD APPLICATIONS -->
-  <script>
-    function logout() {
-      localStorage.removeItem("vp_logged_in_user");
-      window.location.href = "login.html";
-    }
+<script>
+  function logout() {
+    localStorage.removeItem("vp_logged_in_user");
+    window.location.href = "login.html";
+  }
 
-    const container = document.getElementById("applications");
+  const container = document.getElementById("applications");
 
-    const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
+  const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
 
-    if (applications.length === 0) {
-      container.innerHTML = "<p class='empty'>No applications yet.</p>";
-    } else {
-      container.innerHTML = applications.map(app => `
-        <div class="card">
-          <h3>${app.fullName}</h3>
-          <p><strong>Email:</strong> ${app.email}</p>
-          <p><strong>Role:</strong> ${app.role}</p>
-          <p><strong>Message:</strong> ${app.experience}</p>
-        </div>
-      `).join("");
-    }
-  </script>
+  if (applications.length === 0) {
+    container.innerHTML = "<p>No applications yet.</p>";
+  } else {
+    container.innerHTML = applications.map(app => `
+      <div class="card">
+        <h3>${app.fullName}</h3>
+        <p>Email: ${app.email}</p>
+        <p>Role: ${app.role}</p>
+        <p>Message: ${app.experience}</p>
+      </div>
+    `).join("");
+  }
+</script>
 
 </body>
 </html>
