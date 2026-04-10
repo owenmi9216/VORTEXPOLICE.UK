@@ -11,7 +11,7 @@
       color: #e6f1ff;
     }
 
-    /* TOP BAR */
+    /* 🔐 TOP BAR */
     .topbar {
       background: #041421;
       padding: 15px 20px;
@@ -38,6 +38,7 @@
       padding: 20px;
       border-bottom: 1px solid #0d2a44;
       color: #00e0ff;
+      margin: 0;
     }
 
     #applications {
@@ -70,24 +71,28 @@
       font-size: 14px;
       color: #c9e6ff;
     }
+
+    .empty {
+      padding: 20px;
+      color: #7aaacb;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- 🔐 PASSWORD PROTECTION -->
+  <!-- 🔐 LOGIN CHECK -->
   <script>
-    const password = prompt("Enter staff password:");
+    const user = localStorage.getItem("vp_logged_in_user");
 
-    if (password !== "miller9216@") {
-      document.body.innerHTML = "<h1 style='padding:20px'>Access Denied</h1>";
-      throw new Error("Access denied");
+    if (user !== "staff") {
+      window.location.href = "login.html";
     }
   </script>
 
   <!-- 🚔 TOP BAR -->
   <div class="topbar">
-    <strong>VORTEX POLICE • STAFF</strong>
+    <strong>🚔 VORTEX POLICE • STAFF</strong>
     <button onclick="logout()">Logout</button>
   </div>
 
@@ -98,7 +103,8 @@
   <!-- 📦 LOAD APPLICATIONS -->
   <script>
     function logout() {
-      location.reload();
+      localStorage.removeItem("vp_logged_in_user");
+      window.location.href = "login.html";
     }
 
     const container = document.getElementById("applications");
@@ -106,7 +112,7 @@
     const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
 
     if (applications.length === 0) {
-      container.innerHTML = "<p>No applications yet.</p>";
+      container.innerHTML = "<p class='empty'>No applications yet.</p>";
     } else {
       container.innerHTML = applications.map(app => `
         <div class="card">
