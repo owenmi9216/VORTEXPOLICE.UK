@@ -46,10 +46,24 @@
       font-weight: bold;
     }
 
-    /* HERO */
+    /* HERO WITH IMAGE */
     .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 80px 40px;
-      max-width: 800px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-img img {
+      width: 400px;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 2px solid #00e0ff;
     }
 
     .eyebrow {
@@ -71,7 +85,6 @@
 
     p {
       color: #c9e6ff;
-      max-width: 600px;
     }
 
     /* BUTTONS */
@@ -103,6 +116,30 @@
       background: #00e0ff;
       color: black;
     }
+
+    /* INFO SECTION */
+    .info {
+      display: flex;
+      padding: 60px 40px;
+      gap: 40px;
+      flex-wrap: wrap;
+      background: #041421;
+    }
+
+    .info img {
+      width: 350px;
+      border-radius: 10px;
+      border: 2px solid #00e0ff;
+    }
+
+    .info-text {
+      max-width: 500px;
+    }
+
+    .info h2 {
+      color: #00e0ff;
+    }
+
   </style>
 </head>
 
@@ -123,25 +160,53 @@
 
   <!-- HERO -->
   <div class="hero">
-    <span class="eyebrow">OFFICIAL RECRUITMENT AND INFORMATION PORTAL</span>
 
-    <h1>
-      Professional policing.<br>
-      Modern response.<br>
-      Public confidence.
-    </h1>
+    <div class="hero-text">
+      <span class="eyebrow">OFFICIAL RECRUITMENT AND INFORMATION PORTAL</span>
 
-    <p>
-      Vortex Police is a UK-style policing homepage built with a dark navy and cyan visual identity,
-      combining operational professionalism with a clear public-facing design.
-    </p>
+      <h1>
+        Professional policing.<br>
+        Modern response.<br>
+        Public confidence.
+      </h1>
 
-    <div class="buttons">
-      <a href="careers.html" class="btn btn-primary">View Careers</a>
+      <p>
+        Vortex Police delivers a modern, responsive and professional law enforcement experience,
+        focused on community safety, rapid response and operational excellence.
+      </p>
 
-      <!-- ✅ STAFF LOGIN BUTTON (WORKING) -->
-      <a href="login.html" class="btn btn-secondary">Staff Login</a>
+      <div class="buttons">
+        <a href="careers.html" class="btn btn-primary">View Careers</a>
+        <a href="login.html" class="btn btn-secondary">Staff Login</a>
+      </div>
     </div>
+
+    <!-- HERO IMAGE -->
+    <div class="hero-img">
+      <img src="vxpd.png" alt="Vortex Police">
+    </div>
+
+  </div>
+
+  <!-- INFO SECTION -->
+  <div class="info">
+
+    <img src="vortex-poster.png" alt="Police Image">
+
+    <div class="info-text">
+      <h2>About Vortex Police</h2>
+      <p>
+        Our department operates with a strong commitment to professionalism, integrity,
+        and innovation. We provide a modern policing approach designed to meet the
+        demands of today’s communities.
+      </p>
+
+      <p>
+        Whether responding to incidents, recruiting new officers, or managing operations,
+        Vortex Police ensures efficiency, transparency, and public trust.
+      </p>
+    </div>
+
   </div>
 
 </body>
