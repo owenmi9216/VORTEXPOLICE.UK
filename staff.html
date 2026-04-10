@@ -1,27 +1,40 @@
-<script>
-  // 🔐 PASSWORD CHECK
-  const password = prompt("Enter staff password:");
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Staff Portal</title>
+</head>
 
-  if (password !== "miller9216@") {
-    document.body.innerHTML = "<h1>Access Denied</h1>";
-    throw new Error("Access denied");
-  }
+<body>
 
-  // 📦 LOAD APPLICATIONS
-  const container = document.getElementById("applications");
+  <h1>📋 Applications</h1>
 
-  const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
+  <div id="applications"></div>
 
-  if (applications.length === 0) {
-    container.innerHTML = "<p>No applications yet.</p>";
-  } else {
-    container.innerHTML = applications.map(app => `
-      <div class="card">
-        <h3>${app.fullName}</h3>
-        <p>Email: ${app.email}</p>
-        <p>Role: ${app.role}</p>
-        <p>Message: ${app.experience}</p>
-      </div>
-    `).join("");
-  }
-</script>
+  <script>
+    const password = prompt("Enter staff password:");
+
+    if (password !== "miller9216@") {
+      document.body.innerHTML = "<h1>Access Denied</h1>";
+      throw new Error("Access denied");
+    }
+
+    const container = document.getElementById("applications");
+
+    const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
+
+    if (applications.length === 0) {
+      container.innerHTML = "<p>No applications yet.</p>";
+    } else {
+      container.innerHTML = applications.map(app => `
+        <div class="card">
+          <h3>${app.fullName}</h3>
+          <p>Email: ${app.email}</p>
+          <p>Role: ${app.role}</p>
+          <p>Message: ${app.experience}</p>
+        </div>
+      `).join("");
+    }
+  </script>
+
+</body>
+</html>
