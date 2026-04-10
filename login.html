@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Login | Vortex Police</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-lights">
+    <div class="red"></div>
+    <div class="blue"></div>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-badge">VP</div>
+        <div class="brand-text">VORTEX POLICE</div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="careers.html">Careers</a>
+        <a href="login.html" class="active">Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="login-shell">
+    <section class="login-card">
+      <h1>Staff portal login</h1>
+      <p class="small">
+        Demo login for your site. This stores the signed-in user in the browser only.
+      </p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Sign in</button>
+        <button class="btn btn-secondary" type="button" id="logoutBtn">Sign out</button>
+
+        <div class="notice" id="loginStatus">Signed in user: <span id="currentUser">None</span></div>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
