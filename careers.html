@@ -6,6 +6,7 @@
   <title>Careers | Vortex Police</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="top-lights">
     <div class="red"></div>
@@ -31,28 +32,33 @@
     <div class="container">
       <h2>Careers and applications</h2>
       <p class="section-intro">
-        Begin your application to join Vortex Police. This page includes a working demo form.
+        Begin your application to join Vortex Police.
       </p>
 
       <div class="split">
+
+        <!-- FORM -->
         <div class="panel">
           <h3>Application form</h3>
+
           <form id="careersForm">
+
             <div class="form-group">
               <label for="fullName">Full In Game Name</label>
               <input type="text" id="fullName" required>
             </div>
 
+            <!-- ✅ FIXED DISCORD INPUT -->
             <div class="form-group">
-              <label for="careerEmail">Discord Name</label>
-              <input type="email" id="careerEmail" required>
+              <label for="careerEmail">Discord Username</label>
+              <input type="text" id="careerEmail" placeholder="e.g. owen#1234" required>
             </div>
 
             <div class="form-group">
               <label for="role">Role applying for</label>
               <select id="role" required>
                 <option value="">Select a role</option>
-                <option>probationary police constable</option>
+                <option>Probationary Police Constable</option>
                 <option>Police Constable</option>
                 <option>Traffic Officer</option>
                 <option>Armed Response Unit</option>
@@ -67,10 +73,13 @@
             </div>
 
             <button class="btn btn-primary" type="submit">Submit application</button>
+
             <div id="formMessage" class="notice"></div>
+
           </form>
         </div>
 
+        <!-- SIDE INFO -->
         <aside class="panel">
           <h3>What we offer</h3>
           <ul>
@@ -88,16 +97,18 @@
             <li>Calm under pressure</li>
           </ul>
         </aside>
+
       </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      Careers demo page for Vortex Police.
+      Careers page • Vortex Police
     </div>
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>
