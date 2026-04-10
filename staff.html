@@ -1,34 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Staff Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="container">
-  <h1>📋 Applications</h1>
-
-  <div id="applications"></div>
-
-</div>
-
 <script>
-  const data = JSON.parse(localStorage.getItem("vp_last_application"));
-
   const container = document.getElementById("applications");
 
-  if (!data) {
+  const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
+
+  if (applications.length === 0) {
     container.innerHTML = "<p>No applications yet.</p>";
   } else {
-    container.innerHTML = `
+    container.innerHTML = applications.map(app => `
       <div class="card">
-        <h3>${data.fullName}</h3>
-        <p>Email: ${data.email}</p>
-        <p>Role: ${data.role}</p>
-        <p>Message: ${data.experience}</p>
+        <h3>${app.fullName}</h3>
+        <p>Email: ${app.email}</p>
+        <p>Role: ${app.role}</p>
+        <p>Message: ${app.experience}</p>
       </div>
-    `;
+    `).join("");
   }
 </script>
 
