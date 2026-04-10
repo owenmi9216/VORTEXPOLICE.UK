@@ -21,7 +21,7 @@ function setupDemoLogin() {
         return;
       }
 
-      localStorage.setItem("vp_logged_in_user", email);
+      localStorage.setItem("vp_logged_in_user", email);  
       status.textContent = "Login successful. Redirecting...";
       setTimeout(() => {
         window.location.href = "index.html";
@@ -53,7 +53,9 @@ function setupCareersForm() {
       experience: document.getElementById("experience").value.trim()
     };
 
-    localStorage.setItem("vp_last_application", JSON.stringify(formData));
+    const apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
+apps.push(formData);
+localStorage.setItem("vp_applications", JSON.stringify(apps));
     output.textContent = "Application saved locally in your browser. For a real live system, connect this form to a backend.";
     form.reset();
   });
