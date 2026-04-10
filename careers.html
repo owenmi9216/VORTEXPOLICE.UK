@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | Vortex Police</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top-lights">
+    <div class="red"></div>
+    <div class="blue"></div>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-badge">VP</div>
+        <div class="brand-text">VORTEX POLICE</div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="careers.html" class="active">Careers</a>
+        <a href="login.html">Portal</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section section-dark">
+    <div class="container">
+      <h2>Careers and applications</h2>
+      <p class="section-intro">
+        Begin your application to join Vortex Police. This page includes a working demo form.
+      </p>
+
+      <div class="split">
+        <div class="panel">
+          <h3>Application form</h3>
+          <form id="careersForm">
+            <div class="form-group">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" required>
+            </div>
+
+            <div class="form-group">
+              <label for="careerEmail">Email address</label>
+              <input type="email" id="careerEmail" required>
+            </div>
+
+            <div class="form-group">
+              <label for="role">Role applying for</label>
+              <select id="role" required>
+                <option value="">Select a role</option>
+                <option>Police Constable</option>
+                <option>Response Officer</option>
+                <option>Neighbourhood Officer</option>
+                <option>Control Room Operator</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="experience">Why do you want to join?</label>
+              <textarea id="experience" required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Submit application</button>
+            <div id="formMessage" class="notice"></div>
+          </form>
+        </div>
+
+        <aside class="panel">
+          <h3>What we offer</h3>
+          <ul>
+            <li>Structured training and development</li>
+            <li>Pension and benefits package</li>
+            <li>Shift work allowance</li>
+            <li>Pathways into specialist departments</li>
+          </ul>
+
+          <h3>Entry qualities</h3>
+          <ul>
+            <li>Professional judgement</li>
+            <li>Strong communication</li>
+            <li>Respect and integrity</li>
+            <li>Calm under pressure</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      Careers demo page for Vortex Police.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
