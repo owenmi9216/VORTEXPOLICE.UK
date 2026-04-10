@@ -13,19 +13,21 @@ function setupDemoLogin() {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const email = document.getElementById("email").value.trim();
+      const username = document.getElementById("email").value.trim(); // now used as username
       const password = document.getElementById("password").value.trim();
 
-      if (!email || !password) {
-        status.textContent = "Please enter your email and password.";
+      if (!username || !password) {
+        status.textContent = "Please enter username and password.";
         return;
       }
 
-      localStorage.setItem("vp_logged_in_user", email);  
-      status.textContent = "Login successful. Redirecting...";
+      // simple demo login
+      localStorage.setItem("vp_logged_in_user", username);
+
+      status.textContent = "Login successful...";
       setTimeout(() => {
-        window.location.href = "index.html";
-      }, 900);
+        window.location.href = "staff.html"; // go to staff panel
+      }, 800);
     });
   }
 
@@ -48,15 +50,20 @@ function setupCareersForm() {
 
     const formData = {
       fullName: document.getElementById("fullName").value.trim(),
-      email: document.getElementById("careerEmail").value.trim(),
+      discord: document.getElementById("careerEmail").value.trim(), // ✅ now discord
       role: document.getElementById("role").value,
-      experience: document.getElementById("experience").value.trim()
+      experience: document.getElementById("experience").value.trim(),
+      status: "pending" // ✅ for staff panel
     };
 
     const apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
-apps.push(formData);
-localStorage.setItem("vp_applications", JSON.stringify(apps));
-    output.textContent = "Application saved locally in your browser. For a real live system, connect this form to a backend.";
+
+    apps.push(formData);
+
+    localStorage.setItem("vp_applications", JSON.stringify(apps));
+
+    output.textContent = "Application submitted successfully ✅";
+
     form.reset();
   });
 }
