@@ -35,7 +35,7 @@
     #applications {
       padding: 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 20px;
     }
 
@@ -45,6 +45,31 @@
       border-radius: 10px;
       border: 1px solid #0f3b5c;
     }
+
+    .status {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .pending { color: orange; }
+    .approved { color: lime; }
+    .rejected { color: red; }
+
+    .actions {
+      margin-top: 15px;
+    }
+
+    .actions button {
+      margin-right: 5px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .approve { background: lime; }
+    .reject { background: red; color: white; }
+    .delete { background: gray; color: white; }
   </style>
 </head>
 
@@ -53,7 +78,6 @@
 <!-- 🔐 LOGIN CHECK -->
 <script>
   const user = localStorage.getItem("vp_logged_in_user");
-
   if (user !== "staff") {
     window.location.href = "login.html";
   }
@@ -64,7 +88,7 @@
   <button onclick="logout()">Logout</button>
 </div>
 
-<h1>Applications</h1>
+<h1>📋 Applications</h1>
 
 <div id="applications"></div>
 
@@ -74,22 +98,50 @@
     window.location.href = "login.html";
   }
 
-  const container = document.getElementById("applications");
+  function loadApps() {
+    const container = document.getElementById("applications");
+    let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
 
-  const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
+    if (apps.length === 0) {
+      container.innerHTML = "<p>No applications yet.</p>";
+      return;
+    }
 
-  if (applications.length === 0) {
-    container.innerHTML = "<p>No applications yet.</p>";
-  } else {
-    container.innerHTML = applications.map(app => `
+    container.innerHTML = apps.map((app, index) => `
       <div class="card">
         <h3>${app.fullName}</h3>
         <p>Email: ${app.email}</p>
         <p>Role: ${app.role}</p>
         <p>Message: ${app.experience}</p>
+
+        <div class="status ${app.status || 'pending'}">
+          Status: ${app.status || "pending"}
+        </div>
+
+        <div class="actions">
+          <button class="approve" onclick="updateStatus(${index}, 'approved')">Approve</button>
+          <button class="reject" onclick="updateStatus(${index}, 'rejected')">Reject</button>
+          <button class="delete" onclick="deleteApp(${index})">Delete</button>
+        </div>
       </div>
     `).join("");
   }
+
+  function updateStatus(index, status) {
+    let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
+    apps[index].status = status;
+    localStorage.setItem("vp_applications", JSON.stringify(apps));
+    loadApps();
+  }
+
+  function deleteApp(index) {
+    let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
+    apps.splice(index, 1);
+    localStorage.setItem("vp_applications", JSON.stringify(apps));
+    loadApps();
+  }
+
+  loadApps();
 </script>
 
 </body>
