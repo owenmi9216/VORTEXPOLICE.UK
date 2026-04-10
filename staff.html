@@ -1,4 +1,10 @@
-<script>
+ <script>
+  const password = prompt("Enter staff password:");
+
+  if (password !== "vortex123") {
+    document.body.innerHTML = "<h1>Access Denied</h1>";
+  }
+</script>
   const container = document.getElementById("applications");
 
   const applications = JSON.parse(localStorage.getItem("vp_applications")) || [];
