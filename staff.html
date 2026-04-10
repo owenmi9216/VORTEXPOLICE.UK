@@ -40,7 +40,26 @@
       border-bottom: 1px solid #0d2a44;
     }
 
-    #applications {
+    .tabs {
+      padding: 0 20px 20px;
+    }
+
+    .tabs button {
+      margin-right: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #0b2a44;
+      color: #c9e6ff;
+    }
+
+    .tabs button:hover {
+      background: #00e0ff;
+      color: black;
+    }
+
+    .grid {
       padding: 20px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -109,81 +128,115 @@
 <!-- 🔐 LOGIN CHECK -->
 <script>
   const user = localStorage.getItem("vp_logged_in_user");
-
   if (!user) {
     window.location.href = "login.html";
   }
 </script>
 
-<!-- 🚔 TOP BAR -->
+<!-- TOP BAR -->
 <div class="topbar">
   <strong>🚔 VORTEX POLICE • STAFF</strong>
   <button onclick="logout()">Logout</button>
 </div>
 
-<h1>📋 Applications</h1>
+<h1>📊 Staff Dashboard</h1>
 
-<div id="applications"></div>
+<div class="tabs">
+  <button onclick="showApplications()">Applications</button>
+  <button onclick="showMessages()">Messages</button>
+</div>
+
+<!-- DATA CONTAINERS -->
+<div id="applications" class="grid"></div>
+<div id="messages" class="grid" style="display:none;"></div>
 
 <script>
-  function logout() {
-    localStorage.removeItem("vp_logged_in_user");
-    window.location.href = "login.html";
+function logout() {
+  localStorage.removeItem("vp_logged_in_user");
+  window.location.href = "login.html";
+}
+
+/* ---------- APPLICATIONS ---------- */
+function loadApps() {
+  const container = document.getElementById("applications");
+  let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
+
+  if (apps.length === 0) {
+    container.innerHTML = "<p class='empty'>No applications yet.</p>";
+    return;
   }
 
-  function loadApps() {
-    const container = document.getElementById("applications");
-    let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
+  container.innerHTML = apps.map((app, i) => {
+    let status = app.status || "pending";
 
-    if (apps.length === 0) {
-      container.innerHTML = "<p class='empty'>No applications yet.</p>";
-      return;
-    }
+    return `
+      <div class="card">
+        <h3>${app.fullName}</h3>
+        <p><strong>Email:</strong> ${app.email}</p>
+        <p><strong>Role:</strong> ${app.role}</p>
+        <p><strong>Message:</strong> ${app.experience}</p>
 
-    let html = "";
-
-    for (let i = 0; i < apps.length; i++) {
-      let app = apps[i];
-      let status = app.status || "pending";
-
-      html += `
-        <div class="card">
-          <h3>${app.fullName}</h3>
-          <p><strong>Email:</strong> ${app.email}</p>
-          <p><strong>Role:</strong> ${app.role}</p>
-          <p><strong>Message:</strong> ${app.experience}</p>
-
-          <div class="status ${status}">
-            Status: ${status}
-          </div>
-
-          <div class="actions">
-            <button class="approve" onclick="updateStatus(${i}, 'approved')">Approve</button>
-            <button class="reject" onclick="updateStatus(${i}, 'rejected')">Reject</button>
-            <button class="delete" onclick="deleteApp(${i})">Delete</button>
-          </div>
+        <div class="status ${status}">
+          Status: ${status}
         </div>
-      `;
-    }
 
-    container.innerHTML = html;
-  }
+        <div class="actions">
+          <button class="approve" onclick="updateStatus(${i}, 'approved')">Approve</button>
+          <button class="reject" onclick="updateStatus(${i}, 'rejected')">Reject</button>
+          <button class="delete" onclick="deleteApp(${i})">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
 
-  function updateStatus(index, status) {
-    let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
-    apps[index].status = status;
-    localStorage.setItem("vp_applications", JSON.stringify(apps));
-    loadApps();
-  }
-
-  function deleteApp(index) {
-    let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
-    apps.splice(index, 1);
-    localStorage.setItem("vp_applications", JSON.stringify(apps));
-    loadApps();
-  }
-
+function updateStatus(index, status) {
+  let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
+  apps[index].status = status;
+  localStorage.setItem("vp_applications", JSON.stringify(apps));
   loadApps();
+}
+
+function deleteApp(index) {
+  let apps = JSON.parse(localStorage.getItem("vp_applications")) || [];
+  apps.splice(index, 1);
+  localStorage.setItem("vp_applications", JSON.stringify(apps));
+  loadApps();
+}
+
+/* ---------- MESSAGES ---------- */
+function loadMessages() {
+  const container = document.getElementById("messages");
+  let msgs = JSON.parse(localStorage.getItem("vp_messages")) || [];
+
+  if (msgs.length === 0) {
+    container.innerHTML = "<p class='empty'>No messages yet.</p>";
+    return;
+  }
+
+  container.innerHTML = msgs.map(msg => `
+    <div class="card">
+      <h3>${msg.name}</h3>
+      <p><strong>Email:</strong> ${msg.email}</p>
+      <p><strong>Message:</strong> ${msg.message}</p>
+    </div>
+  `).join("");
+}
+
+/* ---------- TAB SWITCH ---------- */
+function showApplications() {
+  document.getElementById("applications").style.display = "grid";
+  document.getElementById("messages").style.display = "none";
+}
+
+function showMessages() {
+  document.getElementById("applications").style.display = "none";
+  document.getElementById("messages").style.display = "grid";
+  loadMessages();
+}
+
+/* LOAD DEFAULT */
+loadApps();
 </script>
 
 </body>
