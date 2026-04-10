@@ -1,21 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Staff Portal</title>
+  <title>Vortex Police • Staff Portal</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #061a2b;
+      color: #e6f1ff;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      background: #041421;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #0d2a44;
+    }
+
+    .topbar strong {
+      color: #00e0ff;
+    }
+
+    .topbar button {
+      background: #00e0ff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    h1 {
+      padding: 20px;
+      border-bottom: 1px solid #0d2a44;
+      color: #00e0ff;
+    }
+
+    #applications {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #0b2a44;
+      border: 1px solid #0f3b5c;
+      border-radius: 12px;
+      padding: 20px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #00e0ff;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: #00e0ff;
+    }
+
+    .card p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #c9e6ff;
+    }
+  </style>
 </head>
 
 <body>
+
+  <!-- 🔐 PASSWORD PROTECTION -->
+  <script>
+    const password = prompt("Enter staff password:");
+
+    if (password !== "miller9216@") {
+      document.body.innerHTML = "<h1 style='padding:20px'>Access Denied</h1>";
+      throw new Error("Access denied");
+    }
+  </script>
+
+  <!-- 🚔 TOP BAR -->
+  <div class="topbar">
+    <strong>VORTEX POLICE • STAFF</strong>
+    <button onclick="logout()">Logout</button>
+  </div>
 
   <h1>📋 Applications</h1>
 
   <div id="applications"></div>
 
+  <!-- 📦 LOAD APPLICATIONS -->
   <script>
-    const password = prompt("Enter staff password:");
-
-    if (password !== "miller9216@") {
-      document.body.innerHTML = "<h1>Access Denied</h1>";
-      throw new Error("Access denied");
+    function logout() {
+      location.reload();
     }
 
     const container = document.getElementById("applications");
@@ -28,9 +111,9 @@
       container.innerHTML = applications.map(app => `
         <div class="card">
           <h3>${app.fullName}</h3>
-          <p>Email: ${app.email}</p>
-          <p>Role: ${app.role}</p>
-          <p>Message: ${app.experience}</p>
+          <p><strong>Email:</strong> ${app.email}</p>
+          <p><strong>Role:</strong> ${app.role}</p>
+          <p><strong>Message:</strong> ${app.experience}</p>
         </div>
       `).join("");
     }
@@ -38,50 +121,3 @@
 
 </body>
 </html>
-<head>
-  <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #061a2b;
-    color: #e6f1ff;
-  }
-
-  h1 {
-    padding: 20px;
-    border-bottom: 1px solid #0d2a44;
-    color: #00e0ff;
-  }
-
-  #applications {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-
-  .card {
-    background: #0b2a44;
-    border: 1px solid #0f3b5c;
-    border-radius: 12px;
-    padding: 20px;
-    transition: 0.2s;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-    border-color: #00e0ff;
-  }
-
-  .card h3 {
-    margin: 0 0 10px;
-    color: #00e0ff;
-  }
-
-  .card p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #c9e6ff;
-  }
-</style>
-<head>
