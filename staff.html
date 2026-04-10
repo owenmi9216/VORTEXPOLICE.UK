@@ -172,7 +172,7 @@ function loadApps() {
     return `
       <div class="card">
         <h3>${app.fullName}</h3>
-        <p><strong>Email:</strong> ${app.email}</p>
+        <p><strong>Discord:</strong> ${app.discord || app.email}</p>
         <p><strong>Role:</strong> ${app.role}</p>
         <p><strong>Message:</strong> ${app.experience}</p>
 
@@ -217,7 +217,7 @@ function loadMessages() {
   container.innerHTML = msgs.map(msg => `
     <div class="card">
       <h3>${msg.name}</h3>
-      <p><strong>Email:</strong> ${msg.email}</p>
+      <p><strong>Contact:</strong> ${msg.email}</p>
       <p><strong>Message:</strong> ${msg.message}</p>
     </div>
   `).join("");
