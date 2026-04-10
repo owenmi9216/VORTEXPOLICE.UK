@@ -6,7 +6,7 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: linear-gradient(180deg, #041421, #061a2b);
       color: white;
       display: flex;
@@ -22,17 +22,12 @@
       width: 320px;
       text-align: center;
       border: 1px solid #0f3b5c;
-      box-shadow: 0 0 20px rgba(0, 224, 255, 0.1);
     }
 
     .logo {
       color: #00e0ff;
       font-weight: bold;
       margin-bottom: 10px;
-    }
-
-    h2 {
-      margin-bottom: 20px;
     }
 
     input {
@@ -43,11 +38,6 @@
       border: none;
       background: #061a2b;
       color: white;
-      outline: none;
-    }
-
-    input::placeholder {
-      color: #7aaacb;
     }
 
     button {
@@ -58,30 +48,12 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      margin-top: 10px;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      background: #00bcd4;
     }
 
     #error {
       margin-top: 10px;
       color: red;
       font-size: 13px;
-    }
-
-    .back {
-      display: block;
-      margin-top: 15px;
-      font-size: 12px;
-      color: #7aaacb;
-      text-decoration: none;
-    }
-
-    .back:hover {
-      color: #00e0ff;
     }
   </style>
 </head>
@@ -90,25 +62,39 @@
 
   <div class="login-box">
     <div class="logo">🚔 VORTEX POLICE</div>
-    <h2>Staff Portal</h2>
+    <h2>Staff Login</h2>
 
-    <input type="password" id="password" placeholder="Enter staff password">
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
     <button onclick="login()">Login</button>
 
     <p id="error"></p>
-
-    <a href="index.html" class="back">← Back to homepage</a>
   </div>
 
   <script>
-    function login() {
-      const pass = document.getElementById("password").value;
+    // 👮 STAFF ACCOUNTS
+    const staffAccounts = [
+      { username: "admin", password: "miller9216@", role: "admin" },
+      { username: "officer1", password: "police123", role: "officer" },
+      { username: "sergeant", password: "secure456", role: "supervisor" }
+    ];
 
-      if (pass === "miller9216@") {
-        localStorage.setItem("vp_logged_in_user", "staff");
+    function login() {
+      const userInput = document.getElementById("username").value;
+      const passInput = document.getElementById("password").value;
+
+      const foundUser = staffAccounts.find(acc =>
+        acc.username === userInput && acc.password === passInput
+      );
+
+      if (foundUser) {
+        localStorage.setItem("vp_logged_in_user", foundUser.username);
+        localStorage.setItem("vp_role", foundUser.role);
+
         window.location.href = "staff.html";
       } else {
-        document.getElementById("error").innerText = "Incorrect password";
+        document.getElementById("error").innerText = "Invalid login";
       }
     }
   </script>
