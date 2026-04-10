@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Staff Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>📋 Applications</h1>
+
+  <div id="applications"></div>
+
+</div>
+
+<script>
+  const data = JSON.parse(localStorage.getItem("vp_last_application"));
+
+  const container = document.getElementById("applications");
+
+  if (!data) {
+    container.innerHTML = "<p>No applications yet.</p>";
+  } else {
+    container.innerHTML = `
+      <div class="card">
+        <h3>${data.fullName}</h3>
+        <p>Email: ${data.email}</p>
+        <p>Role: ${data.role}</p>
+        <p>Message: ${data.experience}</p>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
